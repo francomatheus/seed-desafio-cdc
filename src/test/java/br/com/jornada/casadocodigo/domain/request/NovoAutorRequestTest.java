@@ -1,7 +1,6 @@
 package br.com.jornada.casadocodigo.domain.request;
 
 import br.com.jornada.casadocodigo.resource.NovoAutorResource;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,8 +31,6 @@ class NovoAutorRequestTest {
 
         NovoAutorRequest novoAutorRequest = new NovoAutorRequest("Teste","Admin", "Texto qualquer");
         EntityManager mock = mock(EntityManager.class);
-        NovoAutorResource novoAutorResource = new NovoAutorResource(mock);
-        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance();
 
         Set<ConstraintViolation<NovoAutorRequest>> validate = validator.validate(novoAutorRequest);
 
