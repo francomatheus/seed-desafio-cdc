@@ -1,10 +1,8 @@
 package br.com.jornada.casadocodigo.domain.request;
 
-import br.com.jornada.casadocodigo.resource.NovoAutorResource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.persistence.EntityManager;
 import javax.validation.ConstraintViolation;

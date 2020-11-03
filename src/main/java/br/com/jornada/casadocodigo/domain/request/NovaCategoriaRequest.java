@@ -1,12 +1,13 @@
 package br.com.jornada.casadocodigo.domain.request;
 
+import br.com.jornada.casadocodigo.annotation.ValorUnico;
 import br.com.jornada.casadocodigo.domain.model.Categoria;
 
 import javax.validation.constraints.NotBlank;
 
 public class NovaCategoriaRequest {
 
-    @NotBlank
+    @NotBlank @ValorUnico(className = Categoria.class, fieldName = "nome")
     private String nome;
 
     public NovaCategoriaRequest() {

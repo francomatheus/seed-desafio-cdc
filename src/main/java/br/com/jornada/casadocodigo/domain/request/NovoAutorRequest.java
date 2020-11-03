@@ -1,5 +1,6 @@
 package br.com.jornada.casadocodigo.domain.request;
 
+import br.com.jornada.casadocodigo.annotation.ValorUnico;
 import br.com.jornada.casadocodigo.domain.model.Autor;
 import org.hibernate.validator.constraints.Length;
 
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 public class NovoAutorRequest {
 
     @Email @NotBlank
+    @ValorUnico(className = Autor.class, fieldName = "email")
     private final String email;
     @NotBlank
     private final String nome;

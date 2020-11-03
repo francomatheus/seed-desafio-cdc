@@ -23,16 +23,8 @@ public class NovoAutorResource {
 
     private final EntityManager manager;
 
-    private final EmailDuplicadoValidator emailDuplicadoValidator;
-
-    @InitBinder
-    protected void init(WebDataBinder binder){
-        binder.addValidators(emailDuplicadoValidator);
-    }
-
-    public NovoAutorResource(EntityManager manager, EmailDuplicadoValidator emailDuplicadoValidator) {
+    public NovoAutorResource(EntityManager manager) {
         this.manager = manager;
-        this.emailDuplicadoValidator = emailDuplicadoValidator;
     }
 
     @PostMapping

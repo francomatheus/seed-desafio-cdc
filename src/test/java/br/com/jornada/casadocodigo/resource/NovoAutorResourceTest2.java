@@ -36,8 +36,7 @@ public class NovoAutorResourceTest2 {
 
         NovoAutorRequest novoAutorRequest = new NovoAutorRequest("Teste@gmail.com","Admin", "Texto qualquer");
         EntityManager mock = mock(EntityManager.class);
-        EmailDuplicadoValidator emailDuplicadoValidator = new EmailDuplicadoValidator();
-        NovoAutorResource novoAutorResource = new NovoAutorResource(mock, emailDuplicadoValidator);
+        NovoAutorResource novoAutorResource = new NovoAutorResource(mock);
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance();
 
         ResponseEntity<?> responseEntity = novoAutorResource.criaAutor(novoAutorRequest, uriComponentsBuilder);

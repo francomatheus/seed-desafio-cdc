@@ -21,6 +21,7 @@ public class Categoria {
     public Categoria(@NotBlank String nome) {
         this.nome = nome;
     }
+
     @Deprecated
     public Categoria() {
     }
@@ -31,6 +32,10 @@ public class Categoria {
 
     public String getNome() {
         return nome;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override
