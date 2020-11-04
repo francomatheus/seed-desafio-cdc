@@ -24,9 +24,9 @@ class ValorUnicoValidatorTest {
         EntityManager manager = mock(EntityManager.class);
 
 
-        when(manager.createQuery("select c from "+className.getName()+ " c where c."+fieldName+ " =: pValue")
-                .setParameter("pValue", value)
-                .getResultList()).thenReturn(List.of(new Categoria("livro")));
+//        when(manager.createQuery("select c from "+className.getName()+ " c where c."+fieldName+ " =: pValue")
+//                .setParameter("pValue", value)
+//                .getResultList()).thenReturn(List.of(new Categoria("livro")));
 
         ValorUnicoValidator valorUnicoValidator = new ValorUnicoValidator();
 
