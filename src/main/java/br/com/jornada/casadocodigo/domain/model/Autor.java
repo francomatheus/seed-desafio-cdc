@@ -27,7 +27,7 @@ public class Autor {
     private String nome;
     @NotBlank
     private String descricao;
-    @NotNull @JsonFormat(pattern = "yyyy-MM-ddTHH:mm:ss", shape = JsonFormat.Shape.STRING)
+    @NotNull
     private LocalDateTime instante;
 
     @Deprecated
