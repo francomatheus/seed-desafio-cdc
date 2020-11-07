@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface CompraRespository extends CrudRepository<Compra, String> {
 
-    Optional<Compra> findByCupomDescontoAndCodigo(String codigoCupom);
+    Optional<Compra> findByCupomDescontoCodigo(String codigoCupom);
 }

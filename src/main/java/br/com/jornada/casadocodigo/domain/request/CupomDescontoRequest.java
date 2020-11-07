@@ -11,7 +11,7 @@ public class CupomDescontoRequest {
 
     @NotBlank @ValorUnico(className = CupomDesconto.class, fieldName = "codigo")
     private final String codigo;
-    @NotNull @Positive
+    @NotNull @Positive @Max(100)
     private final Double desconto;
     @JsonFormat(pattern = "yyyy-MM-dd")
     @FutureOrPresent

@@ -41,6 +41,10 @@ public class Compra {
         return carrinhoCompra;
     }
 
+    public CupomDesconto getCupomDesconto() {
+        return cupomDesconto;
+    }
+
     public BigDecimal totalCompraConfirmacao(){
         return this.carrinhoCompra.totalCompra();
     }
@@ -51,5 +55,17 @@ public class Compra {
 
     public void aplicaCupomDesconto(CupomDesconto cupomDesconto) {
         this.cupomDesconto = cupomDesconto;
+    }
+
+    public boolean existeCupom(){
+        return this.cupomDesconto!=null;
+    }
+
+    public BigDecimal getValorTotal() {
+        return this.carrinhoCompra.getTotal().setScale(2);
+    }
+
+    public Double getDesconto() {
+        return this.cupomDesconto.getDesconto();
     }
 }

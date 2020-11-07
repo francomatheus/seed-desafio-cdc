@@ -2,6 +2,7 @@ package br.com.jornada.casadocodigo.resource;
 
 import br.com.jornada.casadocodigo.domain.model.Compra;
 import br.com.jornada.casadocodigo.domain.request.CompraRequest;
+import br.com.jornada.casadocodigo.domain.response.CompraResponseDto;
 import br.com.jornada.casadocodigo.repository.CompraRespository;
 import br.com.jornada.casadocodigo.repository.CupomDescontoRepository;
 import br.com.jornada.casadocodigo.repository.EstadoRepository;
@@ -72,8 +73,10 @@ public class CompraResource {
 
         compraRespository.save(compra);
 
+        CompraResponseDto compraResponseDto = new CompraResponseDto(compra);
+
         return ResponseEntity
-                .created(uriComponentsBuilder.path("/v1/compras/{id}").buildAndExpand(1).toUri())
+                .created(uriComponentsBuilder.path("/v1/compras/{id}").buildAndExpand(compraResponseDto.getId()).toUri())
                 .build();
     }
 }
