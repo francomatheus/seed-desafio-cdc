@@ -7,6 +7,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 
+/**
+ * Carga intrínseca máxima permitida - 9
+ * Carga intrínseca da classe - 1
+ */
+
 public class CupomDescontoRequest {
 
     @NotBlank @ValorUnico(className = CupomDesconto.class, fieldName = "codigo")
@@ -45,6 +50,7 @@ public class CupomDescontoRequest {
                 '}';
     }
 
+    // +1
     public CupomDesconto toModel(){
         return new CupomDesconto(this.codigo,this.desconto,this.validoAte);
     }

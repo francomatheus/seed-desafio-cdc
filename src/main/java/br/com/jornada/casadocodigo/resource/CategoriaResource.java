@@ -15,6 +15,11 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+/**
+ * Carga intrínseca máxima permitida - 7
+ * Carga intrínseca da classe - 3
+ */
+
 @RestController
 @RequestMapping("/v1/categorias")
 public class CategoriaResource {
@@ -28,14 +33,17 @@ public class CategoriaResource {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<?> criaCategoria(@RequestBody @Valid NovaCategoriaRequest novaCategoriaRequest, UriComponentsBuilder uriComponentsBuilder){
+    // +1
+    public ResponseEntity<?> criaCategoria(@RequestBody @Valid NovaCategoriaRequest novaCategoriaRequest,
+                                           UriComponentsBuilder uriComponentsBuilder){
         logger.info("Requisição para criar categoria recebida: {}", novaCategoriaRequest);
+        // +1
         Categoria categoria = novaCategoriaRequest.toCategoria();
 
         manager.persist(categoria);
-
+        // +1
         NovaCategoriaResponseDto novaCategoriaResponseDto = new NovaCategoriaResponseDto(categoria);
-
+        logger.info("Categoria criada com sucesso. idCategoria: {}", novaCategoriaResponseDto.getId());
         return ResponseEntity
                 .created(uriComponentsBuilder.path("/v1/categorias/{id}").buildAndExpand(novaCategoriaResponseDto.getId()).toUri())
                 .build();

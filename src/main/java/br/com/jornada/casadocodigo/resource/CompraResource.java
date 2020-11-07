@@ -22,6 +22,11 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.Optional;
 
+/**
+ * Carga intrínseca máxima permitida - 7
+ * Carga intrínseca da classe - 9
+ */
+
 @RestController
 @RequestMapping("/v1/compras")
 public class CompraResource {
@@ -29,11 +34,11 @@ public class CompraResource {
     private static Logger logger = LoggerFactory.getLogger(CompraResource.class);
     @PersistenceContext
     private final EntityManager manager;
-
+    // +1
     private final CompraRespository compraRespository;
-
+    // +1
     private final EstadoRepository estadoRepository;
-
+    // +1
     private final CupomDescontoRepository cupomDescontoRepository;
 
     public CompraResource(EntityManager manager, CompraRespository compraRespository, EstadoRepository estadoRepository, CupomDescontoRepository cupomDescontoRepository) {
@@ -44,13 +49,16 @@ public class CompraResource {
     }
 
     @InitBinder
+    // +2
     protected void init(WebDataBinder binder){
         binder.addValidators(new EstadoPertencePaisValidator(estadoRepository), new CupomValidoValidator(cupomDescontoRepository));
     }
 
     @PostMapping
     @Transactional
-    public ResponseEntity<?> compra(@RequestBody @Valid CompraRequest compraRequest, UriComponentsBuilder uriComponentsBuilder){
+    // +1
+    public ResponseEntity<?> compra(@RequestBody @Valid CompraRequest compraRequest,
+                                    UriComponentsBuilder uriComponentsBuilder){
 
         logger.info("Requisição para compra recebida: {}", compraRequest);
         /**
@@ -63,18 +71,18 @@ public class CompraResource {
          *         }
          */
 
-
+        // +1
         Compra compra = compraRequest.toModel(manager, cupomDescontoRepository);
 
         logger.info("Total da compra - Confirmação: {}", compra.totalCompraConfirmacao().setScale(2));
         logger.info("Total da compra - Cliente: {}", compra.totalCompraCliente().setScale(2));
-
+        // +1
         Assert.isTrue(compra.totalCompraCliente().setScale(2).equals(compra.totalCompraConfirmacao().setScale(2)),"Valor total esta diferente do total real do carrinho!!");
 
         compraRespository.save(compra);
-
+        // +1
         CompraResponseDto compraResponseDto = new CompraResponseDto(compra);
-
+        logger.info("Compra realizada com sucesso, com id: {} ", compraResponseDto.getId());
         return ResponseEntity
                 .created(uriComponentsBuilder.path("/v1/compras/{id}").buildAndExpand(compraResponseDto.getId()).toUri())
                 .build();

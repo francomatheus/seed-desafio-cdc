@@ -5,6 +5,11 @@ import br.com.jornada.casadocodigo.domain.model.Pais;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * Carga intrínseca máxima permitida - 9
+ * Carga intrínseca da classe - 1
+ */
+
 public class NovoPaisRequest {
 
     @ValorUnico(className = Pais.class, fieldName = "nome")
@@ -32,7 +37,7 @@ public class NovoPaisRequest {
                 "nome='" + nome + '\'' +
                 '}';
     }
-
+    // +1
     public Pais toModel(){
         return new Pais(this.nome);
     }

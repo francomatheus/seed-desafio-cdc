@@ -17,6 +17,11 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+/**
+ * Carga intrínseca máxima permitida - 7
+ * Carga intrínseca da classe - 3
+ */
+
 @RestController
 @RequestMapping("/v1/cupons")
 public class CadastraCupomResource {
@@ -33,7 +38,8 @@ public class CadastraCupomResource {
     @PostMapping
     @Transactional
     // +1
-    public ResponseEntity<?> criaCupom(@RequestBody @Valid CupomDescontoRequest cupomRequest, UriComponentsBuilder uriComponentsBuilder){
+    public ResponseEntity<?> criaCupom(@RequestBody @Valid CupomDescontoRequest cupomRequest,
+                                       UriComponentsBuilder uriComponentsBuilder){
         logger.info("Requisição para criação de cupom recebida: {}", cupomRequest);
         // +1
         CupomDesconto cupomDesconto = cupomRequest.toModel();

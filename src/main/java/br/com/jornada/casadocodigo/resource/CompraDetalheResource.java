@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+/**
+ * Carga intrínseca máxima permitida - 7
+ * Carga intrínseca da classe - 4
+ */
+
 @RestController
 @RequestMapping("/v1/compras")
 public class CompraDetalheResource {
@@ -28,15 +33,17 @@ public class CompraDetalheResource {
     }
 
     @GetMapping("/{id}")
+    // +1
     public ResponseEntity<?> compraDetalhe(@PathVariable(value = "id",required = true) String idCompra){
 
         logger.info("Requisição para detalhes compra recebida para id: {}", idCompra);
+        // +1
         Compra compra = manager.find(Compra.class, idCompra);
-
+        // +1
         Assert.notNull(compra,"Compra não encontrada com o id: ".concat(idCompra));
-
+        // +1
         CompraDetalheResponseDto compraDetalheResponseDto = new CompraDetalheResponseDto(compra);
-
+        logger.info("Detalhes da compra encontrado para o id: {} ", idCompra);
         return ResponseEntity.ok().body(compraDetalheResponseDto);
     }
 }

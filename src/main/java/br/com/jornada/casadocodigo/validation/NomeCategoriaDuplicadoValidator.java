@@ -13,6 +13,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+/**
+ * Carga intrínseca máxima permitida - 7
+ * Carga intrínseca da classe - 3
+ */
+
 @Component
 public class NomeCategoriaDuplicadoValidator implements Validator {
 
@@ -29,12 +34,13 @@ public class NomeCategoriaDuplicadoValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
+        // +1
         NovaCategoriaRequest novaCategoriaRequest = (NovaCategoriaRequest) target;
-
+        // +1
         List<Categoria> categoriaByNome = manager.createQuery("select c from Categoria c where c.nome =: pValue", Categoria.class)
                 .setParameter("pValue", novaCategoriaRequest.getNome())
                 .getResultList();
-
+        // +1
         if (categoriaByNome.size()>0){
             String message = messageSource.getMessage("nome.duplicado", null, LocaleContextHolder.getLocale());
             errors.rejectValue("nome", null, message);

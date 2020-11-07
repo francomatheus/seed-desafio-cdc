@@ -10,6 +10,11 @@ import org.springframework.util.StringUtils;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+/**
+ * Carga intrínseca máxima permitida - 7
+ * Carga intrínseca da classe - 2
+ */
+// +1
 public class DocumentoValidator implements ConstraintValidator<DocumentoValido, String> {
     private static Logger logger = LoggerFactory.getLogger(DocumentoValidator.class);
 
@@ -21,7 +26,7 @@ public class DocumentoValidator implements ConstraintValidator<DocumentoValido, 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         logger.info("Validando documento: {}", value);
-
+        // +1
         if (StringUtils.isEmpty(value)){
             return true;
         }

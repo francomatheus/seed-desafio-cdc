@@ -9,6 +9,11 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Carga intrínseca máxima permitida - 9
+ * Carga intrínseca da classe - 2
+ */
+
 @Entity
 @Table(name = "carrinhoCompra")
 public class CarrinhoCompra {
@@ -21,6 +26,7 @@ public class CarrinhoCompra {
     private BigDecimal total;
 
     @OneToMany(cascade = CascadeType.PERSIST)
+    // +1
     private Set<ItensCompra> itensCompras = new HashSet<>();
 
     @Deprecated
@@ -34,9 +40,11 @@ public class CarrinhoCompra {
 
     public BigDecimal totalCompra(){
 
-        double somaTotal = itensCompras.stream().mapToDouble(itensCompra -> {
-            return itensCompra.resultadoPedido().floatValue();
-        }).sum();
+        double somaTotal = itensCompras.stream()
+                // +1
+                .mapToDouble(itensCompra -> {
+                    return itensCompra.resultadoPedido().floatValue();
+                }).sum();
 
         return BigDecimal.valueOf(somaTotal);
     }

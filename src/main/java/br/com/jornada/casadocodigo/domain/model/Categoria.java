@@ -7,6 +7,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+
+/**
+ * Carga intrínseca máxima permitida - 9
+ * Carga intrínseca da classe - 0
+ */
+
 @Entity
 @Table(name = "categoria")
 public class Categoria {

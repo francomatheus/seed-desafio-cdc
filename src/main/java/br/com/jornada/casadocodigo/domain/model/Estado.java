@@ -5,6 +5,11 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+/**
+ * Carga intrínseca máxima permitida - 9
+ * Carga intrínseca da classe - 1
+ */
+
 @Entity
 @Table(name = "estado")
 public class Estado {
@@ -16,6 +21,7 @@ public class Estado {
 
     private String nome;
     @OneToOne
+    // +1
     private Pais pais;
 
     @Deprecated

@@ -7,6 +7,11 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+/**
+ * Carga intrínseca máxima permitida - 9
+ * Carga intrínseca da classe - 1
+ */
+
 public class NovoAutorRequest {
 
     @Email @NotBlank
@@ -43,7 +48,7 @@ public class NovoAutorRequest {
                 ", descricao='" + descricao + '\'' +
                 '}';
     }
-
+    // +1
     public Autor toAutor(){
         return new Autor(this.email, this.nome, this.descricao);
     }

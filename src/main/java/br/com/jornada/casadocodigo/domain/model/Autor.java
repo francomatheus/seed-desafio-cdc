@@ -1,6 +1,5 @@
 package br.com.jornada.casadocodigo.domain.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -11,6 +10,11 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+
+/**
+ * Carga intrínseca máxima permitida - 9
+ * Carga intrínseca da classe - 0
+ */
 
 @Entity
 @Table(name = "autor")

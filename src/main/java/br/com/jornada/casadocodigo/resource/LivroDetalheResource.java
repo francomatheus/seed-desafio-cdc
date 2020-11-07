@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Carga intrínseca máxima permitida - 7
+ * Carga intrínseca da classe - 4
+ */
+
 @RestController
 @RequestMapping("/v1/livros")
 public class LivroDetalheResource {
@@ -25,6 +30,7 @@ public class LivroDetalheResource {
     }
 
     @GetMapping
+    // +1
     public ResponseEntity<List<LivroDetalheResponseDto>> todosLivros(){
         // +1
         List<LivroDetalheResponseDto> todosLivros = new ArrayList<>();

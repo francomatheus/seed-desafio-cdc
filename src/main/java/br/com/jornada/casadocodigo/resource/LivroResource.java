@@ -20,6 +20,11 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+/**
+ * Carga intrínseca máxima permitida - 7
+ * Carga intrínseca da classe - 7
+ */
+
 @RestController
 @RequestMapping("/v1/livros")
 public class LivroResource {
@@ -32,7 +37,8 @@ public class LivroResource {
     @PostMapping
     @Transactional
     // +1
-    public ResponseEntity<?> criaLivro(@RequestBody @Valid NovoLivroRequest novoLivroRequest, UriComponentsBuilder uriComponentsBuilder){
+    public ResponseEntity<?> criaLivro(@RequestBody @Valid NovoLivroRequest novoLivroRequest,
+                                       UriComponentsBuilder uriComponentsBuilder){
 
         logger.info("Requisição para criar livro recebida: {}", novoLivroRequest);
         // +1
@@ -49,7 +55,7 @@ public class LivroResource {
         manager.persist(livro);
         // +1
         NovoLivroResponseDto novoLivroResponseDto = new NovoLivroResponseDto(livro);
-
+        logger.info("Livro salvo com sucesso, id: {}", novoLivroResponseDto.getId());
         return ResponseEntity
                 .created(uriComponentsBuilder.path("/v1/livros/{id}").buildAndExpand(novoLivroResponseDto.getId()).toUri())
                 .build();

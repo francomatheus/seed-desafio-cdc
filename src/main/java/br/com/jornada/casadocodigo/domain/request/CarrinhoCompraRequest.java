@@ -13,12 +13,18 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Carga intrínseca máxima permitida - 9
+ * Carga intrínseca da classe - 5
+ */
+
 public class CarrinhoCompraRequest {
 
     @NotNull
     @Positive
     private BigDecimal total;
     @Size(min = 1)
+    // +1
     private Set< @Valid ItensCompraRequest> itens = new HashSet<>();
 
     public CarrinhoCompraRequest(@NotNull @Positive BigDecimal total, @Size(min = 1) Set<@Valid ItensCompraRequest> itens) {
@@ -33,12 +39,16 @@ public class CarrinhoCompraRequest {
     public Set<ItensCompraRequest> getItens() {
         return itens;
     }
-
+    // +1
     public CarrinhoCompra toModel(EntityManager manager){
-
-        Set<ItensCompra> itensCompras = this.itens.stream().map(itensCompraRequest -> {
-            return itensCompraRequest.toModel(manager);
-        }).collect(Collectors.toSet());
+        // +1
+        Set<ItensCompra> itensCompras = this.itens.stream()
+                // +1
+                .map(itensCompraRequest -> {
+                    return itensCompraRequest.toModel(manager);
+                })
+                // +1
+                .collect(Collectors.toSet());
 
         return new CarrinhoCompra(this.total, itensCompras);
     }

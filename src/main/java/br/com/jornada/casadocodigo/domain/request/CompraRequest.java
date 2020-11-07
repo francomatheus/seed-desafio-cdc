@@ -12,12 +12,19 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Optional;
 
+/**
+ * Carga intrínseca máxima permitida - 9
+ * Carga intrínseca da classe - 10
+ */
+
 public class CompraRequest {
     @Valid @NotNull
+    // +1
     private DadosClienteRequest dadosCliente;
     @Valid @NotNull
+    // +1
     private CarrinhoCompraRequest carrinhoCompra;
-
+    // +1
     private @Valid CupomDescontoCompraRequest cupomDesconto;
 
     public CompraRequest(DadosClienteRequest dadosCliente, CarrinhoCompraRequest carrinhoCompra, CupomDescontoCompraRequest cupomDesconto) {
@@ -46,14 +53,19 @@ public class CompraRequest {
         return this.cupomDesconto.getCodigo();
     }
 
+    // +2
     public Compra toModel(EntityManager manager, CupomDescontoRepository cupomDescontoRepository){
+        // +1
         DadosCliente dadosCliente = this.dadosCliente.toModel(manager);
+        // +1
         CarrinhoCompra carrinhoCompra = this.carrinhoCompra.toModel(manager);
 
         Compra compra = new Compra(dadosCliente, carrinhoCompra);
-
+        // +1
         if (cupomDesconto!=null){
+            // +1
             Optional<CupomDesconto> cupomDesconto = cupomDescontoRepository.findByCodigo(this.cupomDesconto.getCodigo());
+            // +1
             Assert.notNull(cupomDesconto, "Não existe esse cupom de desconto.");
             compra.aplicaCupomDesconto(cupomDesconto.get());
         }

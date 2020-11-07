@@ -17,6 +17,11 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+/**
+ * Carga intrínseca máxima permitida - 7
+ * Carga intrínseca da classe - 3
+ */
+
 @RestController
 @RequestMapping("/v1/estados")
 public class EstadoResource {
@@ -28,15 +33,17 @@ public class EstadoResource {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<?> criaEstado(@RequestBody @Valid NovoEstadoRequest novoEstadoRequest, UriComponentsBuilder uriComponentsBuilder){
+    // +1
+    public ResponseEntity<?> criaEstado(@RequestBody @Valid NovoEstadoRequest novoEstadoRequest,
+                                        UriComponentsBuilder uriComponentsBuilder){
         logger.info("Requisição para criar novo estado recebedi: {}", novoEstadoRequest);
-
+        // +1
         Estado estado = novoEstadoRequest.toModel(manager);
 
         manager.persist(estado);
-
+        // +1
         NovoEstadoResponseDto novoEstadoResponseDto = new NovoEstadoResponseDto(estado);
-
+        logger.info("Estado criado com sucesso, id: {}", novoEstadoResponseDto.getId());
         return ResponseEntity
                 .created(uriComponentsBuilder.path("/v1/estados/{id}").buildAndExpand(novoEstadoResponseDto.getId()).toUri())
                 .build();

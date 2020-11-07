@@ -6,6 +6,11 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 
+/**
+ * Carga intrínseca máxima permitida - 9
+ * Carga intrínseca da classe - 0
+ */
+
 @Entity
 @Table(name = "cupomDesconto")
 public class CupomDesconto {

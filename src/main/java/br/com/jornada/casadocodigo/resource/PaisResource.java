@@ -17,6 +17,11 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+/**
+ * Carga intrínseca máxima permitida - 7
+ * Carga intrínseca da classe - 3
+ */
+
 @RestController
 @RequestMapping("/v1/paises")
 public class PaisResource {
@@ -28,15 +33,17 @@ public class PaisResource {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<?> criaPais(@RequestBody @Valid NovoPaisRequest novoPaisRequest, UriComponentsBuilder uriComponentsBuilder){
+    // +1
+    public ResponseEntity<?> criaPais(@RequestBody @Valid NovoPaisRequest novoPaisRequest,
+                                      UriComponentsBuilder uriComponentsBuilder){
         logger.info("Requisição para cria pais recebida: {}", novoPaisRequest);
-
+        // +1
         Pais pais = novoPaisRequest.toModel();
 
         manager.persist(pais);
-
+        // +1
         NovoPaisResponseDto novoPaisResponseDto = new NovoPaisResponseDto(pais);
-
+        logger.info("Pais criado com sucesso, id: {}", novoPaisResponseDto.getId());
         return ResponseEntity
                 .created(uriComponentsBuilder.path("/v1/paises/{id}").buildAndExpand(novoPaisResponseDto.getId()).toUri())
                 .build();

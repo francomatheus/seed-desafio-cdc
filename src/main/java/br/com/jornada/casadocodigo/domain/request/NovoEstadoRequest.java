@@ -8,6 +8,11 @@ import org.springframework.util.Assert;
 import javax.persistence.EntityManager;
 import javax.validation.constraints.NotBlank;
 
+/**
+ * Carga intrínseca máxima permitida - 9
+ * Carga intrínseca da classe - 3
+ */
+
 public class NovoEstadoRequest {
 
     @NotBlank @ValorUnico(className = Estado.class, fieldName = "nome")
@@ -35,9 +40,11 @@ public class NovoEstadoRequest {
                 ", idPais='" + idPais + '\'' +
                 '}';
     }
-
+    // +1
     public Estado toModel(EntityManager manager){
+        // +1
         Pais pais = manager.find(Pais.class, this.idPais);
+        // +1
         Assert.notNull(pais, "Id do Pais não encontrado!!");
 
         return new Estado(this.nome, pais);

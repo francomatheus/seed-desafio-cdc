@@ -10,6 +10,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
+/**
+ * Carga intrínseca máxima permitida - 9
+ * Carga intrínseca da classe - 3
+ */
+
 public class ItensCompraRequest {
 
     @ValorExiste(className = Livro.class, fieldName = "id")
@@ -31,8 +36,11 @@ public class ItensCompraRequest {
         return quantidade;
     }
 
+    // +1
     public ItensCompra toModel(EntityManager entityManager){
+        // +1
         Livro livro = entityManager.find(Livro.class, this.idLivro);
+        // +1
         Assert.notNull(livro, "Id do livro não encontrado");
 
         return new ItensCompra(livro,this.quantidade);

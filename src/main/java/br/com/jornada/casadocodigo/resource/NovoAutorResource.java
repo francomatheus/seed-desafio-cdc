@@ -15,6 +15,11 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+/**
+ * Carga intrínseca máxima permitida - 7
+ * Carga intrínseca da classe - 3
+ */
+
 @RestController
 @RequestMapping("/v1/autores")
 public class NovoAutorResource {
@@ -29,15 +34,17 @@ public class NovoAutorResource {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<?> criaAutor(@RequestBody @Valid NovoAutorRequest novoAutorRequest, UriComponentsBuilder uriComponentsBuilder){
+    // +1
+    public ResponseEntity<?> criaAutor(@RequestBody @Valid NovoAutorRequest novoAutorRequest,
+                                       UriComponentsBuilder uriComponentsBuilder){
         logger.info("Requisição para criar novo autor recebida: {}", novoAutorRequest);
-
+        // +1
         Autor autor = novoAutorRequest.toAutor();
 
         manager.persist(autor);
-
+        // +1
         AutorResponseDto autorResponseDto = new AutorResponseDto(autor);
-        logger.info("Autor criado: {}", autorResponseDto);
+        logger.info("Autor criado com sucesso, id : {}", autorResponseDto.getId());
         return ResponseEntity
                 .created(uriComponentsBuilder.path("/v1/autores/{id}").buildAndExpand(autorResponseDto.getId()).toUri())
                 .build();

@@ -1,7 +1,5 @@
 package br.com.jornada.casadocodigo.domain.model;
 
-import br.com.jornada.casadocodigo.annotation.ValorUnico;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.Length;
 
@@ -9,6 +7,11 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+
+/**
+ * Carga intrínseca máxima permitida - 9
+ * Carga intrínseca da classe - 2
+ */
 
 @Entity
 @Table(name = "livro")
@@ -34,8 +37,10 @@ public class Livro {
     @NotNull @Future
     private LocalDate dataPublicacao;
     @ManyToOne
+    // +1
     private Categoria categoria;
     @ManyToOne
+    // +1
     private Autor autor;
 
     @Deprecated

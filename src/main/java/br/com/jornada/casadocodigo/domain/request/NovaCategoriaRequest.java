@@ -5,6 +5,11 @@ import br.com.jornada.casadocodigo.domain.model.Categoria;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * Carga intrínseca máxima permitida - 9
+ * Carga intrínseca da classe - 1
+ */
+
 public class NovaCategoriaRequest {
 
     @NotBlank @ValorUnico(className = Categoria.class, fieldName = "nome")
@@ -27,7 +32,7 @@ public class NovaCategoriaRequest {
                 "nome='" + nome + '\'' +
                 '}';
     }
-
+    // +1
     public Categoria toCategoria(){
         return new Categoria(this.nome);
     }

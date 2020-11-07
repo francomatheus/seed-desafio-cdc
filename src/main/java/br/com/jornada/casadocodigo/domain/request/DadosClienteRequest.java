@@ -14,6 +14,11 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 
+/**
+ * Carga intrínseca máxima permitida - 9
+ * Carga intrínseca da classe - 6
+ */
+
 public class DadosClienteRequest {
     @NotBlank @Email
     private String email;
@@ -116,13 +121,19 @@ public class DadosClienteRequest {
                 '}';
     }
 
+    // +1
     public DadosCliente toModel(EntityManager manager){
+        // +1
         Pais pais = manager.find(Pais.class, this.paisId);
+        // +1
         Assert.notNull(pais, "Pais não encontrado para o id: ".concat(paisId));
 
         DadosCliente dadosCliente = new DadosCliente(this.email, this.nome, this.sobrenome, this.documento, this.endereco, this.complemento, this.cidade, pais, this.telefone, this.cep);
+        // +1
         if (estadoId != null){
+            // +1
             Estado estado = manager.find(Estado.class, estadoId);
+            // +1
             Assert.notNull(estado, "Estado não encontrado para o id: ".concat(estadoId));
             dadosCliente.adicionaEstado(estado);
         }

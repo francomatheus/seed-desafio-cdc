@@ -6,7 +6,13 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+/**
+ * Carga intrínseca máxima permitida - 3
+ * Carga intrínseca da classe - 1
+ */
+
 @Repository
+// +1
 public interface CompraRespository extends CrudRepository<Compra, String> {
 
     Optional<Compra> findByCupomDescontoCodigo(String codigoCupom);

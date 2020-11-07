@@ -2,6 +2,11 @@ package br.com.jornada.casadocodigo.domain.model;
 
 import java.math.BigDecimal;
 
+/**
+ * Carga intrínseca máxima permitida - 9
+ * Carga intrínseca da classe - 0
+ */
+
 public class DetalheCompra {
 
     private final BigDecimal valorTotal;

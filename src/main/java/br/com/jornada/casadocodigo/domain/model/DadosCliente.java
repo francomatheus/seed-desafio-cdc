@@ -3,6 +3,11 @@ package br.com.jornada.casadocodigo.domain.model;
 import javax.persistence.Embeddable;
 import javax.persistence.OneToOne;
 
+/**
+ * Carga intrínseca máxima permitida - 9
+ * Carga intrínseca da classe - 2
+ */
+
 @Embeddable
 public class DadosCliente {
 
@@ -16,8 +21,10 @@ public class DadosCliente {
     private String telefone;
     private String cep;
     @OneToOne
+    // +1
     private Estado estado;
     @OneToOne
+    // +1
     private Pais pais;
 
     public DadosCliente(String email, String nome, String sobrenome, String documento, String endereco, String complemento, String cidade, Pais pais, String telefone, String cep) {

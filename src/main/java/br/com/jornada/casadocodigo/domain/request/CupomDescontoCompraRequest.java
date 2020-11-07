@@ -3,6 +3,11 @@ package br.com.jornada.casadocodigo.domain.request;
 import br.com.jornada.casadocodigo.annotation.ValorExiste;
 import br.com.jornada.casadocodigo.domain.model.CupomDesconto;
 
+/**
+ * Carga intrínseca máxima permitida - 9
+ * Carga intrínseca da classe - 0
+ */
+
 public class CupomDescontoCompraRequest {
 
     @ValorExiste(className = CupomDesconto.class, fieldName = "codigo")

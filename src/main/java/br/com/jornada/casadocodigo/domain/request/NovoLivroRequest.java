@@ -11,6 +11,11 @@ import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+/**
+ * Carga intrínseca máxima permitida - 9
+ * Carga intrínseca da classe - 3
+ */
+
 public class NovoLivroRequest {
 
     @NotBlank @ValorUnico(className = Livro.class, fieldName = "titulo")
@@ -94,7 +99,7 @@ public class NovoLivroRequest {
                 ", autorId='" + autorId + '\'' +
                 '}';
     }
-
+    // +3
     public Livro toModel(Autor autor, Categoria categoria) {
         return new Livro(this.titulo,this.resumo,this.sumario,this.preco,this.numeroPagina,this.isbn,this.dataPublicacao,categoria,autor);
     }

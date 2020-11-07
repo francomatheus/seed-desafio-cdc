@@ -5,6 +5,11 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+/**
+ * Carga intrínseca máxima permitida - 9
+ * Carga intrínseca da classe - 1
+ */
+
 @Entity
 @Table(name = "itensCompra")
 public class ItensCompra {
@@ -15,6 +20,7 @@ public class ItensCompra {
     private String id;
     private Integer quantidade;
     @ManyToOne
+    // +1
     private Livro livro;
 
     public ItensCompra(Livro livro, Integer quantidade) {

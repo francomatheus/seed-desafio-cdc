@@ -5,6 +5,11 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+/**
+ * Carga intrínseca máxima permitida - 9
+ * Carga intrínseca da classe - 3
+ */
+
 @Entity
 @Table(name = "compra")
 public class Compra {
@@ -14,10 +19,15 @@ public class Compra {
     @GenericGenerator(name = "UUID",strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
     @Embedded
+    // *1
     private DadosCliente dadosCliente;
+
     @OneToOne(cascade = CascadeType.PERSIST)
+    // +1
     private CarrinhoCompra carrinhoCompra;
+
     @OneToOne
+    // +1
     private CupomDesconto cupomDesconto;
 
     public Compra(DadosCliente dadosCliente, CarrinhoCompra carrinhoCompra) {
