@@ -17,6 +17,8 @@ public class Compra {
     private DadosCliente dadosCliente;
     @OneToOne(cascade = CascadeType.PERSIST)
     private CarrinhoCompra carrinhoCompra;
+    @OneToOne
+    private CupomDesconto cupomDesconto;
 
     public Compra(DadosCliente dadosCliente, CarrinhoCompra carrinhoCompra) {
         this.dadosCliente = dadosCliente;
@@ -45,5 +47,9 @@ public class Compra {
 
     public BigDecimal totalCompraCliente(){
         return this.carrinhoCompra.getTotal();
+    }
+
+    public void aplicaCupomDesconto(CupomDesconto cupomDesconto) {
+        this.cupomDesconto = cupomDesconto;
     }
 }

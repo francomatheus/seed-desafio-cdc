@@ -1,6 +1,6 @@
 package br.com.jornada.casadocodigo.validation;
 
-import br.com.jornada.casadocodigo.annotation.IdExiste;
+import br.com.jornada.casadocodigo.annotation.ValorExiste;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,30 +10,32 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.List;
 
-public class IdExisteValidator implements ConstraintValidator<IdExiste, String> {
+public class ValorExisteValidator implements ConstraintValidator<ValorExiste, String> {
 
-    private static Logger logger = LoggerFactory.getLogger(IdExisteValidator.class);
+    private static Logger logger = LoggerFactory.getLogger(ValorExisteValidator.class);
 
     private Class<?> className;
+    private String fieldName;
 
     @PersistenceContext
     private final EntityManager manager;
 
-    public IdExisteValidator(EntityManager manager) {
+    public ValorExisteValidator(EntityManager manager) {
         this.manager = manager;
     }
 
 
     @Override
-    public void initialize(IdExiste constraintAnnotation) {
+    public void initialize(ValorExiste constraintAnnotation) {
         className = constraintAnnotation.className();
+        fieldName = constraintAnnotation.fieldName();
     }
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         logger.info("Validando se id existe: {}", value);
 
-        List<?> objetoBuscadoPorId = manager.createQuery("select c from " + className.getName() + " c where c.id = :pValue")
+        List<?> objetoBuscadoPorId = manager.createQuery("select c from " + className.getName() + " c where c."+fieldName+" = :pValue")
                 .setParameter("pValue", value)
                 .getResultList();
 

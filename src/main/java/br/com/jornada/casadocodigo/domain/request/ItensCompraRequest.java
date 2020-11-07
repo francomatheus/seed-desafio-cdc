@@ -1,6 +1,6 @@
 package br.com.jornada.casadocodigo.domain.request;
 
-import br.com.jornada.casadocodigo.annotation.IdExiste;
+import br.com.jornada.casadocodigo.annotation.ValorExiste;
 import br.com.jornada.casadocodigo.domain.model.ItensCompra;
 import br.com.jornada.casadocodigo.domain.model.Livro;
 import org.springframework.util.Assert;
@@ -12,7 +12,7 @@ import javax.validation.constraints.Positive;
 
 public class ItensCompraRequest {
 
-    @IdExiste(className = Livro.class)
+    @ValorExiste(className = Livro.class, fieldName = "id")
     @NotBlank
     private String idLivro;
     @NotNull @Positive
