@@ -25,10 +25,14 @@ public class PaginaDetalhesResource {
     private static Logger logger = LoggerFactory.getLogger(PaginaDetalhesResource.class);
 
     @PersistenceContext
-    private EntityManager manager;
+    private final EntityManager manager;
+
+    public PaginaDetalhesResource(EntityManager manager) {
+        this.manager = manager;
+    }
 
     @GetMapping("/{id}")
-    private ResponseEntity<?> paginaDetalhe(@PathVariable("id") String idLivro){
+    public ResponseEntity<?> paginaDetalhe(@PathVariable("id") String idLivro){
         logger.info("Requisição para pagina de detalhe do livro recebdio. Id: {}", idLivro);
         // +1
         Livro livro = manager.find(Livro.class, idLivro);

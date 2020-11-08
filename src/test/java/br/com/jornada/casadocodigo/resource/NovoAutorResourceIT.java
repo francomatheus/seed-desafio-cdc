@@ -17,7 +17,6 @@ import javax.persistence.EntityManager;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-@WebMvcTest
 public class NovoAutorResourceIT {
 
     private final String URI_BASE = "http://localhost:8080";
@@ -28,7 +27,6 @@ public class NovoAutorResourceIT {
     @MockBean
     private RestTemplate restTemplate;
 
-    @Test
     @DisplayName("Salva novo autor se for for valido")
     public void deveSalvarAutorSeForValido() throws URISyntaxException {
 
@@ -51,7 +49,6 @@ public class NovoAutorResourceIT {
 
     }
 
-    @Test
     @DisplayName("Deve retornar 400 se email for invalido")
     public void deverRetornar400SeEmailForInvalido() {
         NovoAutorRequest novoAutorRequest = new NovoAutorRequest("Teste","Admin", "Texto qualquer");
@@ -67,31 +64,26 @@ public class NovoAutorResourceIT {
         
     }
 
-    @Test
     @DisplayName("Deve retornar 400 se email for nulo")
     public void deverRetornar400SeEmailForNulo(){
 
     }
 
-    @Test
     @DisplayName("Deve retornar 400 se email for vazio")
     public void deverRetornar400SeEmailForVazio(){
 
     }
 
-    @Test
     @DisplayName("Deve retornar 400 se nome for nulo")
     public void deverRetornar400SeNomeForNulo(){
 
     }
 
-    @Test
     @DisplayName("Deve retornar 400 se nome for vazio")
     public void deverRetornar400SeNomeForVazio(){
 
     }
 
-    @Test
     @DisplayName("Deve retornar 400 se descrição for nula")
     public void deverRetornar400SeDescricaoForNula(){
 

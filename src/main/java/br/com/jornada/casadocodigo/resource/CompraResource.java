@@ -3,7 +3,7 @@ package br.com.jornada.casadocodigo.resource;
 import br.com.jornada.casadocodigo.domain.model.Compra;
 import br.com.jornada.casadocodigo.domain.request.CompraRequest;
 import br.com.jornada.casadocodigo.domain.response.CompraResponseDto;
-import br.com.jornada.casadocodigo.repository.CompraRespository;
+import br.com.jornada.casadocodigo.repository.CompraRepository;
 import br.com.jornada.casadocodigo.repository.CupomDescontoRepository;
 import br.com.jornada.casadocodigo.repository.EstadoRepository;
 import br.com.jornada.casadocodigo.validation.CupomValidoValidator;
@@ -20,7 +20,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import java.util.Optional;
 
 /**
  * Carga intrínseca máxima permitida - 7
@@ -35,15 +34,15 @@ public class CompraResource {
     @PersistenceContext
     private final EntityManager manager;
     // +1
-    private final CompraRespository compraRespository;
+    private final CompraRepository compraRepository;
     // +1
     private final EstadoRepository estadoRepository;
     // +1
     private final CupomDescontoRepository cupomDescontoRepository;
 
-    public CompraResource(EntityManager manager, CompraRespository compraRespository, EstadoRepository estadoRepository, CupomDescontoRepository cupomDescontoRepository) {
+    public CompraResource(EntityManager manager, CompraRepository compraRepository, EstadoRepository estadoRepository, CupomDescontoRepository cupomDescontoRepository) {
         this.manager = manager;
-        this.compraRespository = compraRespository;
+        this.compraRepository = compraRepository;
         this.estadoRepository = estadoRepository;
         this.cupomDescontoRepository = cupomDescontoRepository;
     }
@@ -79,7 +78,7 @@ public class CompraResource {
         // +1
         Assert.isTrue(compra.totalCompraCliente().setScale(2).equals(compra.totalCompraConfirmacao().setScale(2)),"Valor total esta diferente do total real do carrinho!!");
 
-        compraRespository.save(compra);
+        compraRepository.save(compra);
         // +1
         CompraResponseDto compraResponseDto = new CompraResponseDto(compra);
         logger.info("Compra realizada com sucesso, com id: {} ", compraResponseDto.getId());

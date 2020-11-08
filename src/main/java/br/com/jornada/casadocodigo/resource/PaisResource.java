@@ -29,7 +29,11 @@ public class PaisResource {
     private static Logger logger = LoggerFactory.getLogger(PaisResource.class);
 
     @PersistenceContext
-    private EntityManager manager;
+    private final EntityManager manager;
+
+    public PaisResource(EntityManager manager) {
+        this.manager = manager;
+    }
 
     @PostMapping
     @Transactional

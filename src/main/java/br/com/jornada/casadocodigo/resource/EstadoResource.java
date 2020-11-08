@@ -29,7 +29,11 @@ public class EstadoResource {
     private static Logger logger = LoggerFactory.getLogger(EstadoResource.class);
 
     @PersistenceContext
-    private EntityManager manager;
+    private final EntityManager manager;
+
+    public EstadoResource(EntityManager manager) {
+        this.manager = manager;
+    }
 
     @PostMapping
     @Transactional

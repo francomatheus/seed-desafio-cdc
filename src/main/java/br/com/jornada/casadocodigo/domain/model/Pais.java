@@ -22,7 +22,7 @@ public class Pais {
     private String id;
 
     private String nome;
-
+    @Deprecated
     public Pais() {
     }
 

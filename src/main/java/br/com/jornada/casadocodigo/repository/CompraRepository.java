@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Repository
 // +1
-public interface CompraRespository extends CrudRepository<Compra, String> {
+public interface CompraRepository extends CrudRepository<Compra, String> {
 
     Optional<Compra> findByCupomDescontoCodigo(String codigoCupom);
 }

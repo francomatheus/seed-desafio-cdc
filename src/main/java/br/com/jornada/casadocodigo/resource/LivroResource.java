@@ -32,7 +32,11 @@ public class LivroResource {
     private static Logger logger = LoggerFactory.getLogger(LivroResource.class);
 
     @PersistenceContext
-    private EntityManager manager;
+    private final EntityManager manager;
+
+    public LivroResource(EntityManager manager) {
+        this.manager = manager;
+    }
 
     @PostMapping
     @Transactional
